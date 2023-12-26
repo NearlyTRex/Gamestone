@@ -1,0 +1,191 @@
+-- Imports
+require "common"
+require "libZlib"
+
+-- Configuration
+libPython_name = "Python"
+libPython_target = "Python"
+libPython_type = "StaticLib"
+libPython_lang = "C"
+libPython_extradir = "../Libs/Python/extra/"
+libPython_origdir = "../Libs/Python/orig/"
+libPython_srcdir = libPython_origdir
+libPython_incdir = libPython_origdir .. "Include/"
+
+-- Includes
+libPython_includedirs = {
+    libPython_origdir,
+    libPython_incdir,
+    libZlib_includedirs,
+}
+
+-- Defines
+libPython_defines = {
+    "Py_NO_ENABLE_SHARED",
+    "Py_BUILD_CORE"
+}
+if os.get() == "windows" then
+    table.insert(libPython_defines, "HAVE_ROUND")
+end
+
+-- Sources
+libPython_sources = {
+    libPython_srcdir .. "Modules/_bisectmodule.c",
+    libPython_srcdir .. "Modules/_codecsmodule.c",
+    libPython_srcdir .. "Modules/_collectionsmodule.c",
+    libPython_srcdir .. "Modules/_csv.c",
+    libPython_srcdir .. "Modules/_functoolsmodule.c",
+    libPython_srcdir .. "Modules/_heapqmodule.c",
+    libPython_srcdir .. "Modules/_io/_iomodule.c",
+    libPython_srcdir .. "Modules/_io/bufferedio.c",
+    libPython_srcdir .. "Modules/_io/bytesio.c",
+    libPython_srcdir .. "Modules/_io/fileio.c",
+    libPython_srcdir .. "Modules/_io/iobase.c",
+    libPython_srcdir .. "Modules/_io/stringio.c",
+    libPython_srcdir .. "Modules/_io/textio.c",
+    libPython_srcdir .. "Modules/_json.c",
+    libPython_srcdir .. "Modules/_localemodule.c",
+    libPython_srcdir .. "Modules/_math.c",
+    libPython_srcdir .. "Modules/_randommodule.c",
+    libPython_srcdir .. "Modules/_sre.c",
+    libPython_srcdir .. "Modules/_struct.c",
+    libPython_srcdir .. "Modules/_weakref.c",
+    libPython_srcdir .. "Modules/arraymodule.c",
+    libPython_srcdir .. "Modules/binascii.c",
+    libPython_srcdir .. "Modules/cjkcodecs/_codecs_cn.c",
+    libPython_srcdir .. "Modules/cjkcodecs/_codecs_hk.c",
+    libPython_srcdir .. "Modules/cjkcodecs/_codecs_iso2022.c",
+    libPython_srcdir .. "Modules/cjkcodecs/_codecs_jp.c",
+    libPython_srcdir .. "Modules/cjkcodecs/_codecs_kr.c",
+    libPython_srcdir .. "Modules/cjkcodecs/_codecs_tw.c",
+    libPython_srcdir .. "Modules/cjkcodecs/multibytecodec.c",
+    libPython_srcdir .. "Modules/cmathmodule.c",
+    libPython_srcdir .. "Modules/cPickle.c",
+    libPython_srcdir .. "Modules/cStringIO.c",
+    libPython_srcdir .. "Modules/datetimemodule.c",
+    libPython_srcdir .. "Modules/errnomodule.c",
+    libPython_srcdir .. "Modules/gcmodule.c",
+    libPython_srcdir .. "Modules/getbuildinfo.c",
+    libPython_srcdir .. "Modules/getpath.c",
+    libPython_srcdir .. "Modules/itertoolsmodule.c",
+    libPython_srcdir .. "Modules/mathmodule.c",
+    libPython_srcdir .. "Modules/md5.c",
+    libPython_srcdir .. "Modules/md5module.c",
+    libPython_srcdir .. "Modules/operator.c",
+    libPython_srcdir .. "Modules/parsermodule.c",
+    libPython_srcdir .. "Modules/posixmodule.c",
+    libPython_srcdir .. "Modules/rotatingtree.c",
+    libPython_srcdir .. "Modules/shamodule.c",
+    libPython_srcdir .. "Modules/sha256module.c",
+    libPython_srcdir .. "Modules/sha512module.c",
+    libPython_srcdir .. "Modules/signalmodule.c",
+    libPython_srcdir .. "Modules/stropmodule.c",
+    libPython_srcdir .. "Modules/symtablemodule.c",
+    libPython_srcdir .. "Modules/timemodule.c",
+    libPython_srcdir .. "Modules/unicodedata.c",
+    libPython_srcdir .. "Modules/xxmodule.c",
+    libPython_srcdir .. "Modules/zipimport.c",
+    libPython_srcdir .. "Modules/zlibmodule.c",
+    libPython_srcdir .. "Objects/abstract.c",
+    libPython_srcdir .. "Objects/boolobject.c",
+    libPython_srcdir .. "Objects/bufferobject.c",
+    libPython_srcdir .. "Objects/bytearrayobject.c",
+    libPython_srcdir .. "Objects/bytes_methods.c",
+    libPython_srcdir .. "Objects/capsule.c",
+    libPython_srcdir .. "Objects/cellobject.c",
+    libPython_srcdir .. "Objects/classobject.c",
+    libPython_srcdir .. "Objects/cobject.c",
+    libPython_srcdir .. "Objects/codeobject.c",
+    libPython_srcdir .. "Objects/complexobject.c",
+    libPython_srcdir .. "Objects/descrobject.c",
+    libPython_srcdir .. "Objects/dictobject.c",
+    libPython_srcdir .. "Objects/enumobject.c",
+    libPython_srcdir .. "Objects/exceptions.c",
+    libPython_srcdir .. "Objects/fileobject.c",
+    libPython_srcdir .. "Objects/floatobject.c",
+    libPython_srcdir .. "Objects/frameobject.c",
+    libPython_srcdir .. "Objects/funcobject.c",
+    libPython_srcdir .. "Objects/genobject.c",
+    libPython_srcdir .. "Objects/intobject.c",
+    libPython_srcdir .. "Objects/iterobject.c",
+    libPython_srcdir .. "Objects/listobject.c",
+    libPython_srcdir .. "Objects/longobject.c",
+    libPython_srcdir .. "Objects/memoryobject.c",
+    libPython_srcdir .. "Objects/methodobject.c",
+    libPython_srcdir .. "Objects/moduleobject.c",
+    libPython_srcdir .. "Objects/object.c",
+    libPython_srcdir .. "Objects/obmalloc.c",
+    libPython_srcdir .. "Objects/rangeobject.c",
+    libPython_srcdir .. "Objects/setobject.c",
+    libPython_srcdir .. "Objects/sliceobject.c",
+    libPython_srcdir .. "Objects/stringobject.c",
+    libPython_srcdir .. "Objects/structseq.c",
+    libPython_srcdir .. "Objects/tupleobject.c",
+    libPython_srcdir .. "Objects/typeobject.c",
+    libPython_srcdir .. "Objects/unicodectype.c",
+    libPython_srcdir .. "Objects/unicodeobject.c",
+    libPython_srcdir .. "Objects/weakrefobject.c",
+    libPython_srcdir .. "Parser/acceler.c",
+    libPython_srcdir .. "Parser/bitset.c",
+    libPython_srcdir .. "Parser/firstsets.c",
+    libPython_srcdir .. "Parser/grammar.c",
+    libPython_srcdir .. "Parser/grammar1.c",
+    libPython_srcdir .. "Parser/listnode.c",
+    libPython_srcdir .. "Parser/metagrammar.c",
+    libPython_srcdir .. "Parser/myreadline.c",
+    libPython_srcdir .. "Parser/node.c",
+    libPython_srcdir .. "Parser/parser.c",
+    libPython_srcdir .. "Parser/parsetok.c",
+    libPython_srcdir .. "Parser/printgrammar.c",
+    libPython_srcdir .. "Parser/tokenizer.c",
+    libPython_srcdir .. "Python/Python-ast.c",
+    libPython_srcdir .. "Python/_warnings.c",
+    libPython_srcdir .. "Python/asdl.c",
+    libPython_srcdir .. "Python/ast.c",
+    libPython_srcdir .. "Python/bltinmodule.c",
+    libPython_srcdir .. "Python/ceval.c",
+    libPython_srcdir .. "Python/codecs.c",
+    libPython_srcdir .. "Python/compile.c",
+    libPython_srcdir .. "Python/dtoa.c",
+    libPython_srcdir .. "Python/errors.c",
+    libPython_srcdir .. "Python/formatter_string.c",
+    libPython_srcdir .. "Python/formatter_unicode.c",
+    libPython_srcdir .. "Python/frozen.c",
+    libPython_srcdir .. "Python/future.c",
+    libPython_srcdir .. "Python/getargs.c",
+    libPython_srcdir .. "Python/getcompiler.c",
+    libPython_srcdir .. "Python/getcopyright.c",
+    libPython_srcdir .. "Python/getopt.c",
+    libPython_srcdir .. "Python/getplatform.c",
+    libPython_srcdir .. "Python/getversion.c",
+    libPython_srcdir .. "Python/graminit.c",
+    libPython_srcdir .. "Python/import.c",
+    libPython_srcdir .. "Python/marshal.c",
+    libPython_srcdir .. "Python/modsupport.c",
+    libPython_srcdir .. "Python/mysnprintf.c",
+    libPython_srcdir .. "Python/mystrtoul.c",
+    libPython_srcdir .. "Python/peephole.c",
+    libPython_srcdir .. "Python/pyarena.c",
+    libPython_srcdir .. "Python/pyctype.c",
+    libPython_srcdir .. "Python/pyfpe.c",
+    libPython_srcdir .. "Python/pymath.c",
+    libPython_srcdir .. "Python/pystate.c",
+    libPython_srcdir .. "Python/pystrcmp.c",
+    libPython_srcdir .. "Python/pystrtod.c",
+    libPython_srcdir .. "Python/pythonrun.c",
+    libPython_srcdir .. "Python/random.c",
+    libPython_srcdir .. "Python/structmember.c",
+    libPython_srcdir .. "Python/symtable.c",
+    libPython_srcdir .. "Python/sysmodule.c",
+    libPython_srcdir .. "Python/thread.c",
+    libPython_srcdir .. "Python/traceback.c",
+    libPython_extradir .. "config.c",
+}
+
+-- Options
+libPython_options = {}
+libPython_options["type"] = libPython_type
+libPython_options["lang"] = libPython_lang
+libPython_options["includedirs"] = libPython_includedirs
+libPython_options["defines"] = {libPython_defines, libZlib_defines}
+libPython_options["sources"] = libPython_sources
